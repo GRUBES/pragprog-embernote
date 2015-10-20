@@ -6,11 +6,13 @@ module.exports = function(app) {
 
   app.use(bodyParser.json());
 
-  var userDb = new nedb({ filename : 'users', autload : true });
+  var userDb = new nedb({ filename : 'users', autoload : true });
 
   usersRouter.get('/', function(req, res) {
-    res.send({
-      'users': []
+    userDb.find(req.query).exec(function (error, users) {
+      res.send({
+        'users': users
+      });
     });
   });
 
