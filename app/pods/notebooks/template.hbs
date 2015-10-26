@@ -1,20 +1,20 @@
 <div>
+  <h2>Notebooks</h2>
   <div class="col-md-3">
-    <h2>Notebooks</h2>
     <section>
       title : {{input value=title}}
       <button {{action 'addNotebook'}}>Add</button>
     </section>
     <section>
-      <ul>
       {{#each model as |notebook|}}
+        <div>
         {{#link-to 'notebooks.notes' notebook.id}}
-          <li>{{notebook.title}}</li>
+          {{notebook.title}}
         {{/link-to}}
+        </div>
       {{else}}
         <p>No notebooks found</p>
       {{/each}}
-      </ul>
     </section>
   </div>
   <div class="col-md-9">{{outlet}}</div>
